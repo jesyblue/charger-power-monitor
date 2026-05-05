@@ -6,15 +6,12 @@ project hardware use:
 * USB type-c charger
 * USB charger
 
-step 1>
-
 first INA219 monitoring the USB type-c charger
 second INA219 monitoring the USB charger
 use example oled_screen_template.png to show data on OLED screen 
 
 INA219 are conected to the Vout of each charger.
 
-step 2>
 
 make a web page to monitor all data like on the OLED.
 use websoket to send data
@@ -27,8 +24,10 @@ make a boot screen whereto show  my brandin info :
 by E-gadget Iasi"
 on the next line wifi status then IP addres of the device. 
 use template for boot screen : boot_screen_template.png
+
 Setup INA219 to the fastet sampling rate. send data to the web page in the fastest way. 
 make the web part code on a separate file "index_html.h" use base64 encoding to atach the favicon.png in the HTML. 
 use favicon.png for that. 
+create "firmware" directory and use to save all code files
 
 
