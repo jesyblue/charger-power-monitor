@@ -80,8 +80,9 @@ void setup() {
 
   inaTypeC.begin();
   inaUsb.begin();
-  inaTypeC.setCalibration_16V_400mA();
-  inaUsb.setCalibration_16V_400mA();
+  // USB chargers frequently exceed 0.4A; use the 2A range to avoid overflow.
+  inaTypeC.setCalibration_32V_2A();
+  inaUsb.setCalibration_32V_2A();
 
   bootMs = millis();
   wm.setConfigPortalTimeout(180);
