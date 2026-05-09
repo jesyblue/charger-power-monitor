@@ -1,6 +1,6 @@
 #include <WiFi.h>
-#include <ESPAsyncWebServer.h>
-#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>  // ESP32Async/ESPAsyncWebServer
+#include <AsyncTCP.h>            // ESP32Async/AsyncTCP
 #include <WiFiManager.h>
 #include <Adafruit_INA219.h>
 #include <U8g2lib.h>
@@ -65,8 +65,17 @@ void broadcastData(MeterData c1, MeterData c2) {
   ws.textAll(payload);
 }
 
+void onWsEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len) {
+  (void)server;
+  (void)client;
+  (void)type;
+  (void)arg;
+  (void)data;
+  (void)len;
+}
+
 void setupWeb() {
-  ws.onEvent([](AsyncWebSocket*, AsyncWebSocketClient*, AwsEventType, void*, uint8_t*, size_t){});
+  ws.onEvent(onWsEvent);
   server.addHandler(&ws);
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) { request->send_P(200, "text/html", INDEX_HTML); });
   ElegantOTA.begin(&server);
