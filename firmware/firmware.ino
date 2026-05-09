@@ -80,8 +80,9 @@ void setup() {
 
   inaTypeC.begin();
   inaUsb.begin();
-  inaTypeC.setCalibration_16V_400mA();
-  inaUsb.setCalibration_16V_400mA();
+  // Use a wider current range suitable for typical USB charging loads.
+  inaTypeC.setCalibration_32V_2A();
+  inaUsb.setCalibration_32V_2A();
 
   bootMs = millis();
   wm.setConfigPortalTimeout(180);
